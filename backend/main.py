@@ -75,7 +75,7 @@ init_db()
 
 class LoginRequest(BaseModel):
     username: str
-    password: str # Added password field
+    password: str
 
 @app.post("/api/login")
 async def login(request: LoginRequest):
@@ -103,8 +103,8 @@ async def get_admin_data(user_data: dict = Depends(verify_token)):
 
 @app.get("/api/manager-only-data")
 async def get_manager_data(user_data: dict = Depends(verify_token)):
-    # Only allow the TrialManager role
-    if user_data["role"] != "TrialManager":
+    # Only allow the trialManager role
+    if user_data["role"] != "trialManager":
         raise HTTPException(status_code=403, detail="You are not a manager")
     return {"message": f"You are {user_data.get('sub')} (manager)"}
 
@@ -115,15 +115,3 @@ async def get_patient_data(user_data: dict = Depends(verify_token)):
     if user_data["role"] != "patient":
         raise HTTPException(status_code=403, detail="You are not a patient")
     return {"message": f"You are {user_data.get('sub')} (patient)"}
-
-@app.get("/api/manager/{username}")
-async def get_manager_data(username, user_data: dict = Depends(verify_token)):
-    if (user_data["role"] != "trialManager" or user_data["username"] != username):
-        raise HTTPException(status_code=403, detail="Invalid credentials. Try again")
-    return {"message": f"You are trial manager: {username}"}
-
-@app.get("/api/patient/{username}")
-async def get_manager_data(username, user_data: dict = Depends(verify_token)):
-    if (user_data["role"] != "TrialManager" or user_data["username"] != username):
-        raise HTTPException(status_code=403, detail="Invalid credentials. Try again")
-    return {"message": f"You are patient: {username}"}

@@ -1,3 +1,5 @@
+import { Link, useNavigate } from 'react-router-dom';
+
 const LandingPage = () => {
   return (
       <div style={{ textAlign: 'center', fontFamily: 'sans-serif' }}>
@@ -15,3 +17,5 @@ const LandingPage = () => {
       </div>
   );
 };
+
+export default LandingPage;

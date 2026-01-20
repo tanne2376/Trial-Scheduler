@@ -24,7 +24,7 @@ export default function App() {
         
         {/* Protected Dashboard Routes */}
         <Route path="/admin" element={user?.role === 'admin' ? <Layout user={user} setUser={setUser}><AdminDashboard /></Layout> : <Navigate to="/login" />} />
-        <Route path="/TrialManager" element={user?.role === 'TrialManager' ? <Layout user={user} setUser={setUser}><ManagerDashboard /></Layout> : <Navigate to="/login" />} />
+        <Route path="/trialManager" element={user?.role === 'trialManager' ? <Layout user={user} setUser={setUser}><ManagerDashboard /></Layout> : <Navigate to="/login" />} />
         <Route path="/patient" element={user?.role === 'patient' ? <Layout user={user} setUser={setUser}><PatientDashboard /></Layout> : <Navigate to="/login" />} />
       </Routes>
     </Router>

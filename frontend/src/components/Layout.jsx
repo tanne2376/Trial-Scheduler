@@ -1,3 +1,6 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 const Layout = ({ user, setUser, children }) => {
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -45,3 +48,5 @@ const Layout = ({ user, setUser, children }) => {
     </div>
   );
 };
+
+export default Layout;

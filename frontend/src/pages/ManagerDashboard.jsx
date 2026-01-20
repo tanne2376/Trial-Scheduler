@@ -1,3 +1,6 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
 const ManagerDashboard = () => {
   const token = localStorage.getItem('token');
   const [data, setData] = useState('Loading...');
@@ -26,3 +29,5 @@ const ManagerDashboard = () => {
     </div>
   );
 };
+
+export default ManagerDashboard;
