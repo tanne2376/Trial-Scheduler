@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// --- Standard Layout for Dashboards ---
 const Layout = ({ user, setUser, children }) => {
   const navigate = useNavigate();
   const handleLogout = () => {

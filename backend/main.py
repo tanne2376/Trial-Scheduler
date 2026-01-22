@@ -49,7 +49,6 @@ app.add_middleware(
 def init_db():
     conn = sqlite3.connect("database.db")
     cursor = conn.cursor()
-    # 1. Added password_hash column
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -61,7 +60,6 @@ def init_db():
     
     cursor.execute("SELECT COUNT(*) FROM users")
     if cursor.fetchone()[0] == 0:
-        # 2. Store the HASH, not the word "password123"
         users = [
             ('admin_user', pwd_context.hash('admin123'), 'admin'),
             ('TM', pwd_context.hash('TM123'), 'trialManager'),
@@ -92,7 +90,7 @@ async def login(request: LoginRequest):
     else:
         raise HTTPException(status_code=401, detail="Invalid credentials")
 
-# --- Example Protected Route ---
+
 @app.get("/api/admin-only-data")
 async def get_admin_data(user_data: dict = Depends(verify_token)):
     if user_data["role"] != "admin":

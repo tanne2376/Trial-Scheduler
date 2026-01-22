@@ -16,10 +16,10 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        {/* Landing Page is now the default root */}
+        {/* Landing Page for default root */}
         <Route path="/" element={<LandingPage />} />
         
-        {/* Login Page is moved to /login */}
+        {/* Login Page */}
         <Route path="/login" element={!user ? <LoginPage setUser={setUser} /> : <Navigate to={`/${user.role}`} />} />
         
         {/* Protected Dashboard Routes */}
